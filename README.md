@@ -37,3 +37,40 @@ Depuis ce dossier avec PHP intégré Laragon :
 ## Mise à jour
 
 Modifier la liste `PROJECTS` dans `js/main.js` pour ajouter ou corriger un projet.
+
+---
+
+## Publier sur GitHub Pages
+
+Un commit local est déjà prêt. Pour créer le dépôt **public** `portfolio` et activer Pages :
+
+### 1. Connexion GitHub (une seule fois)
+
+```powershell
+gh auth login
+```
+
+Choisir : GitHub.com → HTTPS → connexion navigateur (compte **Xenoblade-lab**).
+
+### 2. Publication automatique
+
+```powershell
+cd "c:\laragon\www\Apprentissage Oracle\Travaux de recherche\portfolio\site portfolio"
+powershell -ExecutionPolicy Bypass -File .\publish-github.ps1
+```
+
+### 3. URL du site
+
+Après 1 à 3 minutes :
+
+**https://xenoblade-lab.github.io/portfolio/**
+
+(ou `https://VOTRE-USERNAME.github.io/portfolio/` selon le compte connecté.)
+
+### Mises à jour ultérieures
+
+```powershell
+git add .
+git commit -m "Mise a jour du portfolio"
+git push
+```
