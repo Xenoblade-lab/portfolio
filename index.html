@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio de NGONDE SHADAI BRADLEY — Développeur web & logiciel, ingénierie logicielle FASI/UPC, Kinshasa." />
+  <title>Bradley Ngonde — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="bg-mesh" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <a href="#accueil" class="nav-logo">Bradley <span>Ngonde</span></a>
+    <button class="nav-toggle" type="button" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#formation">Formation</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header id="accueil" class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🏆 1<sup>re</sup> place · Hackathon OpenClaw 2026</div>
+      <h1>NGONDE SHADAI<br><em>Bradley</em></h1>
+      <p class="hero-role">Développeur web & logiciel</p>
+      <p class="hero-desc">
+        Ingénierie logicielle (L3) — FASI/UPC, Kinshasa. Je conçois des solutions numériques sur mesure :
+        sites, plateformes web, prototypes et outils de gestion.
+      </p>
+      <div class="hero-cta">
+        <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+        <a href="#contact" class="btn btn-outline">Me contacter</a>
+        <a href="https://github.com/Xenoblade-lab" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="hero-scroll">Défiler</div>
+  </header>
+
+  <section id="apropos">
+    <p class="section-label reveal">À propos</p>
+    <h2 class="section-title reveal">Qui suis-je ?</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          Étudiant en <strong>troisième année de Licence</strong>, filière <strong>ingénierie logicielle</strong>,
+          à la Faculté des Sciences Informatiques de l’Université Protestante au Congo.
+        </p>
+        <p>
+          <strong>Lauréat OpenClaw 2026</strong> avec SmartCampus AgentAI. Je développe des projets pour l’éducation,
+          la santé, la gestion de données et les entreprises locales.
+        </p>
+      </div>
+      <div class="about-text reveal">
+        <p>
+          <strong>Ce que je propose :</strong> conception et développement de tout type de projet numérique à la demande —
+          site institutionnel, e-commerce, application de gestion, prototype métier, tableau de bord.
+        </p>
+        <p>
+          Approche structurée : analyse du besoin, conception, implémentation, tests et documentation.
+        </p>
+      </div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="stat-num" data-count="23">0</div>
+        <div class="stat-label">Projets répertoriés</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-count="1">0</div>
+        <div class="stat-label">Hackathon gagné</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-count="3">0</div>
+        <div class="stat-label">Années à la FASI</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="competences">
+    <p class="section-label reveal">Compétences</p>
+    <h2 class="section-title reveal">Stack & savoir-faire</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>Langages</h3>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">PHP</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">C</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Développement</h3>
+        <p>Web full-stack · APIs REST · POO · UML · IA appliquée · Tkinter</p>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Outils</h3>
+        <div class="tags">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Linux</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Soft skills</h3>
+        <p>Rigueur · autonomie · équipe · écoute client · respect des délais</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projets">
+    <p class="section-label reveal">Portfolio</p>
+    <h2 class="section-title reveal">Tous mes projets</h2>
+    <p class="reveal" style="color:var(--muted);margin-bottom:1.5rem;font-size:0.95rem;">
+      Projets académiques / FASI = prototypes. Projets clients = livraisons réelles ou en cours.
+    </p>
+    <div class="filters reveal">
+      <button class="filter-btn active" data-filter="all" type="button">Tous</button>
+      <button class="filter-btn" data-filter="hackathon" type="button">Hackathons</button>
+      <button class="filter-btn" data-filter="fasi" type="button">FASI / Académique</button>
+      <button class="filter-btn" data-filter="client" type="button">Clients</button>
+      <button class="filter-btn" data-filter="piste" type="button">Pistes</button>
+    </div>
+    <div id="projects-grid" class="projects-grid"></div>
+  </section>
+
+  <section id="formation">
+    <p class="section-label reveal">Parcours</p>
+    <h2 class="section-title reveal">Formation</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <p class="period">2023 — Aujourd’hui</p>
+        <h4>Licence — Ingénierie logicielle (L3)</h4>
+        <p class="place">Faculté des Sciences Informatiques (FASI), UPC — Kinshasa</p>
+      </div>
+      <div class="timeline-item reveal">
+        <p class="period">2021 — 2023</p>
+        <h4>Option sciences</h4>
+        <p class="place">Complexe scolaire Cardinal Monsegwo — Kinshasa</p>
+      </div>
+      <div class="timeline-item reveal">
+        <p class="period">2016 — 2020</p>
+        <h4>Enseignement secondaire</h4>
+        <p class="place">Institut Mgr Bokeleale — Kinshasa</p>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:2rem;">
+      <h3 style="font-size:1.1rem;margin-bottom:0.75rem;">Langues</h3>
+      <p style="color:#94a3b8;"><strong style="color:var(--text)">Français</strong> — courant &nbsp;·&nbsp;
+        <strong style="color:var(--text)">Anglais</strong> — intermédiaire (lecture technique)</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <p class="section-label reveal">Contact</p>
+    <h2 class="section-title reveal">Collaborons</h2>
+    <div class="contact-box reveal">
+      <p>Devis · stage · développement sur mesure</p>
+      <h3 style="margin:1rem 0;font-size:1.35rem;">NGONDE SHADAI BRADLEY</h3>
+      <div class="contact-links">
+        <a href="mailto:bradley.ngonde3@gmail.com">bradley.ngonde3@gmail.com</a>
+        <a href="tel:+243824502478">+243 82 450 2478</a>
+        <a href="https://github.com/Xenoblade-lab" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/bradley-ngonde-488058343/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Bradley Ngonde — Portfolio FASI/UPC · Kinshasa, RDC</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
