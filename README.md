@@ -1,4 +1,4 @@
-# Site portfolio — Bradley Ngonde
+﻿# Site portfolio — Bradley Ngonde
 
 Site web interactif du portfolio (contenu aligné sur `portfolio_complet_design.pdf`).
 
