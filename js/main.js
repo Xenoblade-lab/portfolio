@@ -128,7 +128,7 @@ function renderProjects(filter = "all") {
 
   grid.innerHTML = filtered.map((p) => {
     const st = STATUS_LABELS[p.status] || STATUS_LABELS.proto;
-    const trophy = p.trophy ? " 🏆 1<sup>re</sup> place" : "";
+    const trophy = p.trophy ? " · 1<sup>re</sup>" : "";
     const classes = [
       "project-card",
       "reveal",
@@ -177,10 +177,16 @@ function initNav() {
     nav.classList.toggle("scrolled", window.scrollY > 40);
   });
 
-  toggle?.addEventListener("click", () => links.classList.toggle("open"));
+  toggle?.addEventListener("click", () => {
+    const open = links.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
 
   document.querySelectorAll(".nav-links a").forEach((a) => {
-    a.addEventListener("click", () => links.classList.remove("open"));
+    a.addEventListener("click", () => {
+      links.classList.remove("open");
+      toggle?.setAttribute("aria-expanded", "false");
+    });
   });
 }
 
