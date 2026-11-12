@@ -126,7 +126,7 @@ function renderProjects(filter = "all") {
     ? PROJECTS
     : PROJECTS.filter((p) => p.cat === filter);
 
-  grid.innerHTML = filtered.map((p) => {
+  grid.innerHTML = filtered.map((p, i) => {
     const st = STATUS_LABELS[p.status] || STATUS_LABELS.proto;
     const trophy = p.trophy ? " · 1<sup>re</sup>" : "";
     const classes = [
@@ -137,7 +137,7 @@ function renderProjects(filter = "all") {
     ].filter(Boolean).join(" ");
 
     return `
-      <article class="${classes}" data-cat="${p.cat}">
+      <article class="${classes}" data-cat="${p.cat}" style="animation-delay:${(i % 8) * 0.06}s">
         <div class="project-head">
           <h3>${p.id}. ${p.title}</h3>
           <span class="badge ${st.class}">${st.text}${trophy}</span>
@@ -158,24 +158,65 @@ function observeReveals() {
     (entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          entry.target.style.transitionDelay = `${(i % 6) * 0.08}s`;
+          entry.target.style.transitionDelay = `${(i % 7) * 0.07}s`;
           entry.target.classList.add("visible", "observed");
         }
       });
     },
-    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
   );
   reveals.forEach((el) => observer.observe(el));
+}
+
+function initTheme() {
+  const root = document.documentElement;
+  const btn = document.getElementById("theme-toggle");
+  const veil = document.getElementById("theme-veil");
+
+  const apply = (theme) => {
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem("bn-theme", theme);
+    btn?.setAttribute("aria-label", theme === "dark" ? "Passer en mode clair" : "Passer en mode sombre");
+  };
+
+  if (!root.getAttribute("data-theme")) {
+    apply(localStorage.getItem("bn-theme") || "dark");
+  }
+
+  btn?.addEventListener("click", (e) => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    if (veil) {
+      veil.style.setProperty("--mx", `${e.clientX}px`);
+      veil.style.setProperty("--my", `${e.clientY}px`);
+      veil.classList.remove("on");
+      void veil.offsetWidth;
+      veil.classList.add("on");
+    }
+    apply(next);
+  });
+}
+
+function initLoader() {
+  const loader = document.getElementById("loader");
+  if (!loader) return;
+  const hide = () => loader.classList.add("done");
+  window.addEventListener("load", () => setTimeout(hide, 700));
+  setTimeout(hide, 1800);
 }
 
 function initNav() {
   const nav = document.querySelector(".nav");
   const toggle = document.querySelector(".nav-toggle");
   const links = document.querySelector(".nav-links");
+  let lastY = 0;
 
   window.addEventListener("scroll", () => {
-    nav.classList.toggle("scrolled", window.scrollY > 40);
-  });
+    const y = window.scrollY;
+    nav.classList.toggle("scrolled", y > 40);
+    if (y > 120 && y > lastY) nav.style.transform = "translateY(-110%)";
+    else nav.style.transform = "translateY(0)";
+    lastY = y;
+  }, { passive: true });
 
   toggle?.addEventListener("click", () => {
     const open = links.classList.toggle("open");
@@ -204,7 +245,7 @@ function animateCounters() {
   const counters = document.querySelectorAll("[data-count]");
   const run = (el) => {
     const target = +el.dataset.count;
-    const duration = 1500;
+    const duration = 1600;
     const start = performance.now();
     const step = (now) => {
       const p = Math.min((now - start) / duration, 1);
@@ -228,10 +269,61 @@ function animateCounters() {
   counters.forEach((c) => obs.observe(c));
 }
 
+function initMotion() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (window.matchMedia("(pointer: coarse)").matches) return;
+
+  const orb = document.getElementById("orb");
+  const panel = document.querySelector(".hero-panel");
+  let mx = window.innerWidth / 2;
+  let my = window.innerHeight / 2;
+  let ox = mx;
+  let oy = my;
+
+  window.addEventListener("pointermove", (e) => {
+    mx = e.clientX;
+    my = e.clientY;
+  }, { passive: true });
+
+  const tick = () => {
+    ox += (mx - ox) * 0.08;
+    oy += (my - oy) * 0.08;
+    if (orb) {
+      orb.style.left = `${ox}px`;
+      orb.style.top = `${oy}px`;
+    }
+    if (panel) {
+      const r = panel.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const dx = (mx - cx) / r.width;
+      const dy = (my - cy) / r.height;
+      panel.style.transform = `rotateY(${dx * 10}deg) rotateX(${-dy * 8}deg)`;
+    }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+
+  document.querySelectorAll(".btn").forEach((btn) => {
+    btn.addEventListener("pointermove", (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width / 2;
+      const y = e.clientY - r.top - r.height / 2;
+      btn.style.transform = `translate(${x * 0.15}px, ${y * 0.2 - 2}px)`;
+    });
+    btn.addEventListener("pointerleave", () => {
+      btn.style.transform = "";
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  initLoader();
+  initTheme();
   renderProjects("all");
   initNav();
   initFilters();
   animateCounters();
   observeReveals();
+  initMotion();
 });
