@@ -206,7 +206,6 @@ body {
   z-index: 1000;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
   padding: 0 clamp(1rem, 4vw, 2.5rem);
   background: var(--nav-bg);
@@ -214,6 +213,8 @@ body {
   border-bottom: 1px solid transparent;
   transition: border-color 0.3s var(--ease), background 0.35s var(--ease), transform 0.35s var(--ease);
 }
+
+.nav-logo { margin-right: auto; }
 
 .nav.scrolled {
   border-bottom-color: var(--line);
@@ -228,6 +229,7 @@ body {
   color: var(--ink);
   text-decoration: none;
   transition: color 0.3s;
+  flex-shrink: 0;
 }
 
 .nav-logo span {
