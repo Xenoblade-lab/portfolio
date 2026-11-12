@@ -118,6 +118,14 @@ const CAT_LABELS = {
   piste: "Pistes",
 };
 
+const CAT_ICONS = {
+  experience: "i-briefcase",
+  hackathon: "i-trophy",
+  fasi: "i-grad",
+  client: "i-users",
+  piste: "i-flag",
+};
+
 function renderProjects(filter = "all") {
   const grid = document.getElementById("projects-grid");
   if (!grid) return;
@@ -129,6 +137,7 @@ function renderProjects(filter = "all") {
   grid.innerHTML = filtered.map((p, i) => {
     const st = STATUS_LABELS[p.status] || STATUS_LABELS.proto;
     const trophy = p.trophy ? " · 1<sup>re</sup>" : "";
+    const icon = CAT_ICONS[p.cat] || "i-grid";
     const classes = [
       "project-card",
       "reveal",
@@ -139,7 +148,10 @@ function renderProjects(filter = "all") {
     return `
       <article class="${classes}" data-cat="${p.cat}" style="animation-delay:${(i % 8) * 0.06}s">
         <div class="project-head">
-          <h3>${p.id}. ${p.title}</h3>
+          <div class="project-head-left">
+            <span class="project-ico" aria-hidden="true"><svg class="ico"><use href="#${icon}"></use></svg></span>
+            <h3>${p.id}. ${p.title}</h3>
+          </div>
           <span class="badge ${st.class}">${st.text}${trophy}</span>
         </div>
         ${p.meta ? `<p class="project-meta">${p.meta}</p>` : ""}
